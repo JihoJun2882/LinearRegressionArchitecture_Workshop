@@ -1,0 +1,18 @@
+model: linear
+data:
+  table: stream_samples
+  time_range:
+  - 0.0
+  - 64793.42
+  axes:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+prep:
+  interpolate: false
+saved_at: '2025-09-27T23:10:06.532039Z'

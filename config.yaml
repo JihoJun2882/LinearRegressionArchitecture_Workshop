@@ -1,0 +1,49 @@
+database:
+  url_env: DB_URL
+
+data:
+  table: stream_samples               # Change to your table name
+  time_col: ts                        # Timestamp/time column; supports float seconds or TIMESTAMP
+  # For WIDE schema, set axes to names: ["axis1","axis2",...]
+  # For LONG schema, set axes to ids:   [1,2,3,4,5,6,7,8]
+  axes: [1,2,3,4,5,6,7,8]
+
+  # LONG schema column names (used only if axes are numeric):
+  axis_id_col: axis_id
+  value_col: value
+
+  train_start: 0.0               # Use numbers for numeric ts, or ISO for TIMESTAMP
+  train_end:   64793.42          # setting with 80% of Data(same as assignment) / total data train_end : 80794.968
+
+prep:
+  interpolate: false
+  resample_seconds: null              # Keep raw cadence; set an integer to resample in seconds
+
+model:
+  type: linear
+
+registry:
+  root_dir: "ModelRegistry/artifacts"
+  version_tag: "v1"
+
+plots:
+  dir: "out"
+
+thresholds:
+  # Percentiles to derive MinC / MaxC from positive residuals (0–100 scale)
+  minc_percentile: 75
+  maxc_percentile: 95
+
+  # Default sustain durations in seconds (converted to steps using dt_seconds)
+  alert_seconds_default: 5.0
+  error_seconds_default: 3.0
+  
+  # Trim top fraction of positive residuals before percentiles (to match notebook)
+  trim_top_ratio: 0.02        # trim top 2%
+  min_pos_for_trim: 20        # if fewer positives, consider fallback
+  use_mad_fallback: true      # median + MAD fallback when too few positives
+
+  # Run-length quantiles to adjust above defaults (0–1 scale)
+  # Alerts typically require longer sustain; Errors use median to avoid being too short.
+  alert_quantile: 0.80
+  error_quantile: 0.50
