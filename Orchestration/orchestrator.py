@@ -1,3 +1,6 @@
+# Load 'config.yaml' file -> High level pipeline runner
+# Extract → Analyze → Prepare → Select Model → Train/Predict → Evaluate/Plot → Calibrate Thresholds → Register Artifacts
+
 import os, yaml, pandas as pd
 import io
 from dataclasses import dataclass

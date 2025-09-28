@@ -1,3 +1,7 @@
+# Normalizes the time axis to start at zero (saving the origin as time0)
+# Optionally interpolates axis values (Not used in this assignment) -> added
+# returns ['time_s', *axes] while writing prep_stats.json for reproducibility. -> added
+
 import pandas as pd
 from dataclasses import dataclass, asdict
 from pathlib import Path

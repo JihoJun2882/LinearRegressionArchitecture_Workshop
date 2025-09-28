@@ -1,3 +1,7 @@
+# This function profiles a time column by converting it to seconds (handling either datetime or numeric).
+# Computing the median inter-sample interval (dt_seconds).
+# It returns an EDAResult containing that interval, the number of rows, and the earliest/latest timestamps as strings.
+
 import pandas as pd
 from dataclasses import dataclass
 import pandas.api.types as ptypes

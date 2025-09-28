@@ -1,3 +1,6 @@
+# Calculate per-axis residual-based thresholds and dwell times (in steps), then writes them to thresholds.json
+# The threshold is calculated in the same way as the existing code. The difference lies in saving it to a file.
+
 from pathlib import Path
 from typing import Optional, Dict, List
 import numpy as np, pandas as pd, json
@@ -11,8 +14,8 @@ class ThresholdCalibrator:
         policy = policy or {}
 
         # Percentiles (0–100) for MinC/MaxC
-        self.minc_pct = float(policy.get("minc_percentile", 75))
-        self.maxc_pct = float(policy.get("maxc_percentile", 95))
+        self.minc_pct = float(policy.get("minc_percentile", 95))
+        self.maxc_pct = float(policy.get("maxc_percentile", 99))
 
         # Trim settings
         self.trim_top = float(policy.get("trim_top_ratio", 0.0))          # e.g., 0.02
@@ -20,9 +23,9 @@ class ThresholdCalibrator:
         self.use_mad_fallback = bool(policy.get("use_mad_fallback", True))
 
         # Defaults and run-length quantiles
-        self.alert_seconds_default = float(policy.get("alert_seconds_default", 5.0))
+        self.alert_seconds_default = float(policy.get("alert_seconds_default", 10.0))
         self.error_seconds_default = float(policy.get("error_seconds_default", 3.0))
-        self.alert_quantile = float(policy.get("alert_quantile", 0.80))   # <- match notebook
+        self.alert_quantile = float(policy.get("alert_quantile", 0.90))  
         self.error_quantile = float(policy.get("error_quantile", 0.50))
 
     @staticmethod

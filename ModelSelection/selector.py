@@ -1,3 +1,6 @@
+# Implemented a configuration-driven design where experiments can be reproduced by toggling model.type in config.yaml.
+# In the previous codebase, model selection and training happened in a single step, so I couldn’t swap the model independently.
+
 from dataclasses import dataclass
 
 @dataclass

@@ -1,3 +1,6 @@
+# Evaluate the model’s predictions (metrics) 
+# Save plots to files.
+
 from pathlib import Path
 import pandas as pd
 import numpy as np
@@ -10,6 +13,7 @@ class Evaluator:
         self.plot_dir = Path(plot_dir)
         self.plot_dir.mkdir(parents=True, exist_ok=True)
 
+    # Return a dataframe with per-axis metrics (R^2, MAE, RMSE)
     def metrics(self, df_pred: pd.DataFrame, axes: list[str]) -> pd.DataFrame:
         rows = []
         for k in axes:
@@ -23,6 +27,9 @@ class Evaluator:
             })
         return pd.DataFrame(rows)
 
+    # Two plots per axis : 
+    # 1. fit plot - scatter & line -> save
+    # 2. residuals - scatter & baesline -> save
     def plots(self, df_pred: pd.DataFrame, axes: list[str]) -> None:
         for k in axes:
             # Scatter + regression line

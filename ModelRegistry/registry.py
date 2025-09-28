@@ -1,3 +1,6 @@
+# Save the model as a file. (Parts not implemented in existing tasks)
+# In existing tasks, it was saved as a variable such as model, not a file.
+
 from pathlib import Path
 from joblib import dump
 import yaml, shutil, datetime as dt
