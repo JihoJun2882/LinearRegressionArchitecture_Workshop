@@ -1,3 +1,5 @@
+# Linear Regression Architecture Workshop
+
 # ML → MLOps Scaffold (DB → ML Box → Model Registry)
 
 This repository implements the **ML block** in your diagram end‑to‑end:
